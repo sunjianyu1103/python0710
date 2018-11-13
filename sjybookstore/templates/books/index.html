@@ -1,14 +1,14 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-{%load staticfiels%}
+{%load staticfiles%}
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 	<title>尚硅谷书城-首页</title>
 	<link rel="stylesheet" type="text/css" href="{% static 'css/reset.css' %}">
 	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
-	<script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
-	<script type="text/javascript" src="js/jquery-ui.min.js"></script>
-	<script type="text/javascript" src="js/slide.js"></script>
+	<script type="text/javascript" src="/static/js/jquery-1.12.4.min.js"></script>
+	<script type="text/javascript" src="/static/js/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="/static/js/slide.js"></script>
 </head>
 <body>
 	<div class="header_con">
@@ -36,7 +36,7 @@
 	</div>
 
 	<div class="search_bar clearfix">
-		<a href="index.html" class="logo fl"><img src="images/logo.png" style="width: 160px; height: 53px;"></a>
+		<a href="index.html" class="logo fl"><img src="/static/images/logo.png" style="width: 160px; height: 53px;"></a>
 		<div class="search_con fl">
 			<input type="text" class="input_text fl" name="" placeholder="搜索商品">
 			<input type="button" class="input_btn fr" name="" value="搜索">
@@ -71,18 +71,18 @@
 		</ul>
 		<div class="slide fl">
 			<ul class="slide_pics">
-				<li><img src="images/slide.jpg" alt="幻灯片" style="width: 760px; height: 270px;"></li>
-				<li><img src="images/slide02.jpg" alt="幻灯片" style="width: 760px; height: 270px;"></li>
-				<li><img src="images/slide03.jpg" alt="幻灯片" style="width: 760px; height: 270px;"></li>
-				<li><img src="images/slide04.jpg" alt="幻灯片" style="width: 760px; height: 270px;"></li>
+				<li><img src="/static/images/slide.jpg" alt="幻灯片" style="width: 760px; height: 270px;"></li>
+				<li><img src="/static/images/slide02.jpg" alt="幻灯片" style="width: 760px; height: 270px;"></li>
+				<li><img src="/static/images/slide03.jpg" alt="幻灯片" style="width: 760px; height: 270px;"></li>
+				<li><img src="/static/images/slide04.jpg" alt="幻灯片" style="width: 760px; height: 270px;"></li>
 			</ul>
 			<div class="prev"></div>
 			<div class="next"></div>
 			<ul class="points"></ul>
 		</div>
 		<div class="adv fl">
-			<a href="#"><img src="images/adv01.jpg" style="width: 240px; height: 135px;"></a>
-			<a href="#"><img src="images/adv02.jpg" style="width: 240px; height: 135px;"></a>
+			<a href="#"><img src="/static/images/adv01.jpg" style="width: 240px; height: 135px;"></a>
+			<a href="#"><img src="/static/images/adv02.jpg" style="width: 240px; height: 135px;"></a>
 		</div>
 	</div>
 
@@ -101,26 +101,13 @@
 		<div class="book_con clearfix">
 			<div class="book_banner fl"><img src="images/banner01.jpg"></div>
 			<ul class="book_list fl">
+                {%for book in python_hot%}
 				<li>
-					<h4><a href="#">Python核心编程</a></h4>
-					<a href="#"><img src="images/book/book001.jpg"></a>
-					<div class="prize">¥ 30.00</div>
+					<h4><a href="#">{{ book.name }}</a></h4>
+					<a href="#"><img src="{% static book.image %}"></a>
+					<div class="prize">{{ book.price }}</div>
 				</li>
-				<li>
-					<h4><a href="#">Python学习手册</a></h4>
-					<a href="#"><img src="images/book/book002.jpg"></a>
-					<div class="prize">¥ 5.50</div>
-				</li>
-				<li>
-					<h4><a href="#">Python Cookbook</a></h4>
-					<a href="#"><img src="images/book/book003.jpg"></a>
-					<div class="prize">¥ 3.90</div>
-				</li>
-				<li>
-					<h4><a href="#">Python高性能编程</a></h4>
-					<a href="#"><img src="images/book/book004.jpg"></a>
-					<div class="prize">¥ 25.80</div>
-				</li>
+                {%endfor%}
 			</ul>
 		</div>
 	</div>
@@ -137,26 +124,26 @@
 		</div>
 
 		<div class="book_con clearfix">
-			<div class="book_banner fl"><img src="images/banner02.jpg"></div>
+			<div class="book_banner fl"><img src="/static/images/banner02.jpg"></div>
 			<ul class="book_list fl">
 				<li>
 					<h4><a href="#">Javascript高级程序设计</a></h4>
-					<a href="#"><img src="images/book/book005.jpg"></a>
+					<a href="#"><img src="/static/images/book/book005.jpg"></a>
 					<div class="prize">¥ 48.00</div>
 				</li>
 				<li>
 					<h4><a href="#">Javascript权威指南</a></h4>
-					<a href="#"><img src="images/book/book006.jpg"></a>
+					<a href="#"><img src="/static/images/book/book006.jpg"></a>
 					<div class="prize">¥ 46.00</div>
 				</li>
 				<li>
 					<h4><a href="#">Javascript语言精粹</a></h4>
-					<a href="#"><img src="images/book/book007.jpg"></a>
+					<a href="#"><img src="{% static 'images/book/book007.jpg'%}"></a>
 					<div class="prize">¥ 19.00</div>
 				</li>
 				<li>
 					<h4><a href="#">Javascript DOM编程艺术</a></h4>
-					<a href="#"><img src="images/book/book008.jpg"></a>
+					<a href="#"><img src="{%static 'images/book/book008.jpg'%}"></a>
 					<div class="prize">¥ 25.00</div>
 				</li>
 			</ul>
@@ -176,26 +163,26 @@
 		</div>
 
 		<div class="book_con clearfix">
-			<div class="book_banner fl"><img src="images/banner03.jpg"></div>
+			<div class="book_banner fl"><img src="{% static 'images/banner03.jpg' %}"></div>
 			<ul class="book_list fl">
 				<li>
 					<h4><a href="#">数据结构与算法分析</a></h4>
-					<a href="#"><img src="images/book/book009.jpg"></a>
+					<a href="#"><img src="{% static 'images/book/book009.jpg' %}"></a>
 					<div class="prize">¥ 38.00</div>
 				</li>
 				<li>
 					<h4><a href="#">算法导论</a></h4>
-					<a href="#"><img src="images/book/book010.jpg"></a>
+					<a href="#"><img src="{% static 'images/book/book010.jpg' %}"></a>
 					<div class="prize">¥ 38.00</div>
 				</li>
 				<li>
 					<h4><a href="#">算法</a></h4>
-					<a href="#"><img src="images/book/book011.jpg"></a>
+					<a href="#"><img src="{% static 'images/book/book011.jpg' %}"></a>
 					<div class="prize">¥ 38.00</div>
 				</li>
 				<li>
 					<h4><a href="#">计算机程序设计艺术</a></h4>
-					<a href="#"><img src="images/book/book012.jpg"></a>
+					<a href="#"><img src="{% static 'images/book/book012.jpg'%}"></a>
 					<div class="prize">¥ 38.00</div>
 				</li>
 			</ul>
@@ -215,26 +202,26 @@
 		</div>
 
 		<div class="book_con clearfix">
-			<div class="book_banner fl"><img src="images/banner04.jpg"></div>
+			<div class="book_banner fl"><img src="{% static 'images/banner04.jpg' %}"></div>
 			<ul class="book_list fl">
 				<li>
 					<h4><a href="#">机器学习</a></h4>
-					<a href="#"><img src="images/book/book013.jpg"></a>
+					<a href="#"><img src="{% static 'images/book/book013.jpg' %}"></a>
 					<div class="prize">¥ 38.00</div>
 				</li>
 				<li>
 					<h4><a href="#">机器学习实战</a></h4>
-					<a href="#"><img src="images/book/book014.jpg"></a>
+					<a href="#"><img src="{% static 'images/book/book014.jpg' %}"></a>
 					<div class="prize">¥ 38.00</div>
 				</li>
 				<li>
 					<h4><a href="#">统计学习方法</a></h4>
-					<a href="#"><img src="images/book/book015.jpg"></a>
+					<a href="#"><img src="{% static 'images/book/book015.jpg' %}"></a>
 					<div class="prize">¥ 38.00</div>
 				</li>
 				<li>
 					<h4><a href="#">集体智慧编程</a></h4>
-					<a href="#"><img src="images/book/book016.jpg"></a>
+					<a href="#"><img src="{% static 'images/book/book016.jpg' %}"></a>
 					<div class="prize">¥ 38.00</div>
 				</li>
 			</ul>
@@ -254,21 +241,21 @@
 		</div>
 
 		<div class="book_con clearfix">
-			<div class="book_banner fl"><img src="images/banner05.jpg"></div>
+			<div class="book_banner fl"><img src="{% static 'images/banner05.jpg' %}"></div>
 			<ul class="book_list fl">
 				<li>
 					<h4><a href="#">现代操作系统</a></h4>
-					<a href="#"><img src="images/book/book017.jpg"></a>
+					<a href="#"><img src="{% static 'images/book/book017.jpg' %}"></a>
 					<div class="prize">¥ 38.00</div>
 				</li>
 				<li>
 					<h4><a href="#">深入理解计算机系统</a></h4>
-					<a href="#"><img src="images/book/book018.jpg"></a>
+					<a href="#"><img src="{% static 'images/book/book018.jpg' %}"></a>
 					<div class="prize">¥ 38.00</div>
 				</li>
 				<li>
 					<h4><a href="#">UNIX环境高级编程</a></h4>
-					<a href="#"><img src="images/book/book019.jpg"></a>
+					<a href="#"><img src="{% static 'images/book/book019.jpg' %}"></a>
 					<div class="prize">¥ 38.00</div>
 				</li>
 				<li>
@@ -293,7 +280,7 @@
 		</div>
 
 		<div class="book_con clearfix">
-			<div class="book_banner fl"><img src="images/banner06.jpg"></div>
+			<div class="book_banner fl"><img src="{% static 'images/banner06.jpg' %}"></div>
 			<ul class="book_list fl">
 				<li>
 					<h4><a href="#">数据库系统概念</a></h4>
