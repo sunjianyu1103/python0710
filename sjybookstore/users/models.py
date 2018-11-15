@@ -32,3 +32,8 @@ class Passport(BaseModel):
 
     class Meta:
         db_table = 's_user_account'
+class Address(BaseModel):
+    recipient_name = models.CharField(max_length=20, verbose_name='收件人')
+    recipient_addr = models.CharField(max_length=256, verbose_name='收件地址')
+    zip_code = models.CharField(max_length=6, verbose_name='邮政编码')
+    

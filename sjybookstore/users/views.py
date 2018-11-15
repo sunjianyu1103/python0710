@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect,reverse
 import re
+from django.http import JsonResponse
 from .models import Passport
 def register(request):
     '''显示用户注册页面'''
@@ -34,17 +35,41 @@ def register_handle(request):
     return redirect(reverse('books:index'))
 
 def login(request):
-    if request.COOKIES.get('username'):
-        username = request.COOKIES.get('username')
+    '''显示登录页面'''
+    if request.COOKIES.get("username"):
+        username = request.COOKIES.get("username")
         checked = 'checked'
     else:
         username = ''
-        chenked = 'checked'
+        checked = ''
     context = {
         'username': username,
         'checked': checked,
-        }
-    return render(request, 'users/login.html',context)
+    }
 
-def 
+    return render(request, 'users/login.html', context)
+
+def login_check(request):
+    username = request.POST.get('username')
+    password = request.POST.get('password')
+    remember = request.POST.get('remember')
+    if not all([username, password, remember]):
+        return JsonResponse({'res': 2})
+    passport = Passport.objects.get_one_passport(username=username, password=password)
+    if passport:
+        next_url = reverse('books:index')
+        jres = JsonResponse({'res':1, 'next_url': next_url})
+        if remember == 'true':
+            jres.set_cookie('username', username, max_age=7*24*3600)
+        else:
+            jres.delete_cookie('username')
+        request.session['islogin'] = True
+        request.session['username'] = username
+        request.session['passport_id'] = passport.id
+        return jres
+    else:
+        return JsonResponse({'res':0})
+def logout(request):
+    request.session.flush()
+    return redirect(reverse('books:index'))
 
